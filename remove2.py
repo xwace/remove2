@@ -1,7 +1,14 @@
+from abc import ABC
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import torch
+import torchvision.models
 from PIL import Image
+import pytorch_lightning as pl
+from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.strategies import DDPFullyShardedNativeStrategy
+
 
 #from readtxt import txt2array
 
@@ -38,10 +45,9 @@ def array2txt(temp_array, txt_path):
 
     f.close()
 
-
+import torchvision.models.resnet as modules
 if __name__ =="__main__":
     img_array = txt2array("map.txt")
-
     # txt_path = 'map.txt'	# txt文本路径
     # f = open(txt_path)
     # data_lists = f.readlines()	#读出的是str类型
